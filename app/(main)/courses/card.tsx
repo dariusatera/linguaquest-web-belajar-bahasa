@@ -12,6 +12,7 @@ type CardProps = {
   isActive?: boolean;
 };
 
+
 export const Card = ({
   title,
   id,
