@@ -74,3 +74,5 @@ export const Header = () => {
     </>
   );
 };
+
+// tes mancing vercel pakai tsx
