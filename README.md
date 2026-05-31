@@ -104,6 +104,7 @@ duolingo-clone/
   |- environment.d.ts
   |- eslint.config.mjs
   |- next.config.ts
+  |- package-lock.json
   |- package.json
   |- postcss.config.js
   |- proxy.ts
