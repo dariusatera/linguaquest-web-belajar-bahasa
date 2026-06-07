@@ -58,11 +58,11 @@ duolingo-clone/
     |-- api/
     |-- lesson/
     |-- apple-icon.png
-    |-- favicon.ico
     |-- globals.css
     |-- icon1.png
     |-- icon2.png
     |-- layout.tsx
+    |-- logo.png
   |- components/
     |-- modals/
     |-- ui/
