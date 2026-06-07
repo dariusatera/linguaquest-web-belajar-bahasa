@@ -23,10 +23,10 @@ const main = async () => {
       db.delete(schema.userSubscription),
     ]);
 
-    // Insert courses
+    // Insert courses (Ubah ke English dan bendera US/UK)
     const courses = await db
       .insert(schema.courses)
-      .values([{ title: "Spanish", imageSrc: "/es.svg" }])
+      .values([{ title: "English", imageSrc: "/us.png" }])
       .returning();
 
     // For each course, insert units
@@ -37,13 +37,13 @@ const main = async () => {
           {
             courseId: course.id,
             title: "Unit 1",
-            description: `Learn the basics of ${course.title}`,
+            description: `Belajar dasar-dasar ${course.title}`,
             order: 1,
           },
           {
             courseId: course.id,
             title: "Unit 2",
-            description: `Learn intermediate ${course.title}`,
+            description: `Belajar ${course.title} level menengah`,
             order: 2,
           },
         ])
@@ -62,7 +62,7 @@ const main = async () => {
           ])
           .returning();
 
-        // For each lesson, insert challenges
+        // For each lesson, insert challenges (Soal diubah ke Bahasa Indonesia)
         for (const lesson of lessons) {
           const challenges = await db
             .insert(schema.challenges)
@@ -70,78 +70,78 @@ const main = async () => {
               {
                 lessonId: lesson.id,
                 type: "SELECT",
-                question: 'Which one of these is "the man"?',
+                question: 'Yang manakah "pria"?',
                 order: 1,
               },
               {
                 lessonId: lesson.id,
                 type: "SELECT",
-                question: 'Which one of these is "the woman"?',
+                question: 'Yang manakah "wanita"?',
                 order: 2,
               },
               {
                 lessonId: lesson.id,
                 type: "SELECT",
-                question: 'Which one of these is "the boy"?',
+                question: 'Yang manakah "anak laki-laki"?',
                 order: 3,
               },
               {
                 lessonId: lesson.id,
                 type: "ASSIST",
-                question: '"the man"',
+                question: '"pria"',
                 order: 4,
               },
               {
                 lessonId: lesson.id,
                 type: "SELECT",
-                question: 'Which one of these is "the zombie"?',
+                question: 'Yang manakah "zombi"?',
                 order: 5,
               },
               {
                 lessonId: lesson.id,
                 type: "SELECT",
-                question: 'Which one of these is "the robot"?',
+                question: 'Yang manakah "robot"?',
                 order: 6,
               },
               {
                 lessonId: lesson.id,
                 type: "SELECT",
-                question: 'Which one of these is "the girl"?',
+                question: 'Yang manakah "anak perempuan"?',
                 order: 7,
               },
               {
                 lessonId: lesson.id,
                 type: "ASSIST",
-                question: '"the zombie"',
+                question: '"zombi"',
                 order: 8,
               },
             ])
             .returning();
 
-          // For each challenge, insert challenge options
+          // For each challenge, insert challenge options (Jawaban diubah ke English)
           for (const challenge of challenges) {
             if (challenge.order === 1) {
               await db.insert(schema.challengeOptions).values([
                 {
                   challengeId: challenge.id,
                   correct: true,
-                  text: "el hombre",
+                  text: "the man",
                   imageSrc: "/man.svg",
-                  audioSrc: "/es_man.mp3",
+                  audioSrc: "/en_man.mp3",
                 },
                 {
                   challengeId: challenge.id,
                   correct: false,
-                  text: "la mujer",
+                  text: "the woman",
                   imageSrc: "/woman.svg",
-                  audioSrc: "/es_woman.mp3",
+                  audioSrc: "/en_woman.mp3",
                 },
                 {
                   challengeId: challenge.id,
                   correct: false,
-                  text: "el chico",
+                  text: "the boy",
                   imageSrc: "/boy.svg",
-                  audioSrc: "/es_boy.mp3",
+                  audioSrc: "/en_boy.mp3",
                 },
               ]);
             }
@@ -151,23 +151,23 @@ const main = async () => {
                 {
                   challengeId: challenge.id,
                   correct: true,
-                  text: "la mujer",
+                  text: "the woman",
                   imageSrc: "/woman.svg",
-                  audioSrc: "/es_woman.mp3",
+                  audioSrc: "/en_woman.mp3",
                 },
                 {
                   challengeId: challenge.id,
                   correct: false,
-                  text: "el chico",
+                  text: "the boy",
                   imageSrc: "/boy.svg",
-                  audioSrc: "/es_boy.mp3",
+                  audioSrc: "/en_boy.mp3",
                 },
                 {
                   challengeId: challenge.id,
                   correct: false,
-                  text: "el hombre",
+                  text: "the man",
                   imageSrc: "/man.svg",
-                  audioSrc: "/es_man.mp3",
+                  audioSrc: "/en_man.mp3",
                 },
               ]);
             }
@@ -177,23 +177,23 @@ const main = async () => {
                 {
                   challengeId: challenge.id,
                   correct: false,
-                  text: "la mujer",
+                  text: "the woman",
                   imageSrc: "/woman.svg",
-                  audioSrc: "/es_woman.mp3",
+                  audioSrc: "/en_woman.mp3",
                 },
                 {
                   challengeId: challenge.id,
                   correct: false,
-                  text: "el hombre",
+                  text: "the man",
                   imageSrc: "/man.svg",
-                  audioSrc: "/es_man.mp3",
+                  audioSrc: "/en_man.mp3",
                 },
                 {
                   challengeId: challenge.id,
                   correct: true,
-                  text: "el chico",
+                  text: "the boy",
                   imageSrc: "/boy.svg",
-                  audioSrc: "/es_boy.mp3",
+                  audioSrc: "/en_boy.mp3",
                 },
               ]);
             }
@@ -203,20 +203,20 @@ const main = async () => {
                 {
                   challengeId: challenge.id,
                   correct: false,
-                  text: "la mujer",
-                  audioSrc: "/es_woman.mp3",
+                  text: "the woman",
+                  audioSrc: "/en_woman.mp3",
                 },
                 {
                   challengeId: challenge.id,
                   correct: true,
-                  text: "el hombre",
-                  audioSrc: "/es_man.mp3",
+                  text: "the man",
+                  audioSrc: "/en_man.mp3",
                 },
                 {
                   challengeId: challenge.id,
                   correct: false,
-                  text: "el chico",
-                  audioSrc: "/es_boy.mp3",
+                  text: "the boy",
+                  audioSrc: "/en_boy.mp3",
                 },
               ]);
             }
@@ -226,23 +226,23 @@ const main = async () => {
                 {
                   challengeId: challenge.id,
                   correct: false,
-                  text: "el hombre",
+                  text: "the man",
                   imageSrc: "/man.svg",
-                  audioSrc: "/es_man.mp3",
+                  audioSrc: "/en_man.mp3",
                 },
                 {
                   challengeId: challenge.id,
                   correct: false,
-                  text: "la mujer",
+                  text: "the woman",
                   imageSrc: "/woman.svg",
-                  audioSrc: "/es_woman.mp3",
+                  audioSrc: "/en_woman.mp3",
                 },
                 {
                   challengeId: challenge.id,
                   correct: true,
-                  text: "el zombie",
+                  text: "the zombie",
                   imageSrc: "/zombie.svg",
-                  audioSrc: "/es_zombie.mp3",
+                  audioSrc: "/en_zombie.mp3",
                 },
               ]);
             }
@@ -252,23 +252,23 @@ const main = async () => {
                 {
                   challengeId: challenge.id,
                   correct: true,
-                  text: "el robot",
+                  text: "the robot",
                   imageSrc: "/robot.svg",
-                  audioSrc: "/es_robot.mp3",
+                  audioSrc: "/en_robot.mp3",
                 },
                 {
                   challengeId: challenge.id,
                   correct: false,
-                  text: "el zombie",
+                  text: "the zombie",
                   imageSrc: "/zombie.svg",
-                  audioSrc: "/es_zombie.mp3",
+                  audioSrc: "/en_zombie.mp3",
                 },
                 {
                   challengeId: challenge.id,
                   correct: false,
-                  text: "el chico",
+                  text: "the boy",
                   imageSrc: "/boy.svg",
-                  audioSrc: "/es_boy.mp3",
+                  audioSrc: "/en_boy.mp3",
                 },
               ]);
             }
@@ -278,23 +278,23 @@ const main = async () => {
                 {
                   challengeId: challenge.id,
                   correct: true,
-                  text: "la nina",
+                  text: "the girl",
                   imageSrc: "/girl.svg",
-                  audioSrc: "/es_girl.mp3",
+                  audioSrc: "/en_girl.mp3",
                 },
                 {
                   challengeId: challenge.id,
                   correct: false,
-                  text: "el zombie",
+                  text: "the zombie",
                   imageSrc: "/zombie.svg",
-                  audioSrc: "/es_zombie.mp3",
+                  audioSrc: "/en_zombie.mp3",
                 },
                 {
                   challengeId: challenge.id,
                   correct: false,
-                  text: "el hombre",
+                  text: "the man",
                   imageSrc: "/man.svg",
-                  audioSrc: "/es_man.mp3",
+                  audioSrc: "/en_man.mp3",
                 },
               ]);
             }
@@ -304,20 +304,20 @@ const main = async () => {
                 {
                   challengeId: challenge.id,
                   correct: false,
-                  text: "la mujer",
-                  audioSrc: "/es_woman.mp3",
+                  text: "the woman",
+                  audioSrc: "/en_woman.mp3",
                 },
                 {
                   challengeId: challenge.id,
                   correct: true,
-                  text: "el zombie",
-                  audioSrc: "/es_zombie.mp3",
+                  text: "the zombie",
+                  audioSrc: "/en_zombie.mp3",
                 },
                 {
                   challengeId: challenge.id,
                   correct: false,
-                  text: "el chico",
-                  audioSrc: "/es_boy.mp3",
+                  text: "the boy",
+                  audioSrc: "/en_boy.mp3",
                 },
               ]);
             }
